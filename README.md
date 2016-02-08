@@ -13,6 +13,11 @@ docker create -v /data --name mumble-data mumble-server /bin/true
 docker run -d --volumes-from mumble-data --name mumble-server-1 -p 64738:64738 mumble-server
 ```
 
+## Find SuperUser password in logs
+```
+docker logs mumble-server-1
+```
+
 ## Update mumble:
 ```
 docker stop mumble-server-1
