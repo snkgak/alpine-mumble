@@ -1,16 +1,16 @@
-## Build mumble image:
+## Pull mumble image:
 ```
 docker pull dandyd449/alpine-mumble
 ```
 
 ## Create named storage:
 ```
-docker create -v /data --name mumble-data mumble-server /bin/true
+docker create -v /data --name mumble-data dandyd449/alpine-mumble /bin/true
 ```
 
 ## Run and attach storage:
 ```
-docker run -d --volumes-from mumble-data --name mumble-server-1 -p 64738:64738 mumble-server
+docker run -d --volumes-from mumble-data --name mumble-server-1 -p 64738:64738/tcp -p 64738:64738/udp dandyd449/alpine-mumble
 ```
 
 ## Find SuperUser password in logs
@@ -23,5 +23,5 @@ docker logs mumble-server-1
 docker stop mumble-server-1
 docker rm mumble-server-1
 docker pull dandyd449/alpine-mumble
-docker run -d --volumes-from mumble-data --name mumble-server-1 -p 64738:64738 mumble-server
+docker run -d --volumes-from mumble-data --name mumble-server-1 -p 64738:64738 dandyd449/alpine-mumble
 ```
