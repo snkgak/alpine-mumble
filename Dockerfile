@@ -1,5 +1,5 @@
-FROM alpine:latest
-MAINTAINER Randy Damron <randy.damron@gmail.com>
+FROM alpine:3.6
+MAINTAINER ScottK <snkgak@yahoo.com>
 
 RUN apk add --update murmur icu-libs && rm -rf /var/cache/apk/*
 
