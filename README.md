@@ -1,4 +1,6 @@
+# README.md
 forked from https://github.com/rdamron/alpine-mumble on 1 June 2017
+----
 
 ## Pull mumble image:
 ```
@@ -25,7 +27,7 @@ docker logs mumble-server-1
 ```
 docker stop mumble-server-1
 docker rm mumble-server-1
-docker pull dandyd449/alpine-mumble
+docker pull snkgak/alpine-mumble
 docker run -d --volumes-from mumble-data --name mumble-server-1 -p 64738:64738/tcp -p 64738:64738/udp \
   snkgak/alpine-mumble
 ```
