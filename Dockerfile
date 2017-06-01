@@ -1,11 +1,16 @@
 FROM alpine:3.6
 MAINTAINER ScottK <snkgak@yahoo.com>
 
-RUN apk add --update murmur icu-libs && rm -rf /var/cache/apk/*
+RUN useradd -D -u 1000 mumble \
+    && apk add --update murmur icu-libs \
+    && rm -rf /var/cache/apk/* \
+    && mkdir /data \
+    && chown 1000 /data
 
-ADD ["configs/mumble-server.ini", "/data/mumble-server.ini"]
+ADD ["mumble-server.ini", "/config/mumble-server.ini"]
 
-VOLUME ["/data"]
-EXPOSE 64738/udp 64738/tcp
+VOLUME ["/data", "/config"]
+EXPOSE 64738/udp
 
-ENTRYPOINT ["/usr/bin/murmurd", "-fg", "-ini", "/data/mumble-server.ini"]
+USER mumble
+ENTRYPOINT ["/usr/bin/murmurd", "-fg", "-ini", "/config/mumble-server.ini"]
